@@ -1,4 +1,5 @@
 import json
+
 import mapnik
 
 from tilecloud import TileStore
@@ -6,6 +7,7 @@ from tilecloud import TileStore
 
 
 class MapnikTileStore(TileStore):
+
     def __init__(self, mapfile, **kwargs):
         TileStore.__init__(self, **kwargs)
         self.map = mapnik.Map(0, 0)
@@ -29,6 +31,7 @@ class MapnikTileStore(TileStore):
 
 
 class UTFGridTileStore(MapnikTileStore):
+
     def __init__(self, mapfile, layer_idx=0, fields=None, **kwargs):
         MapnikTileStore.__init__(self, mapfile, **kwargs)
         self.layer_idx = layer_idx
