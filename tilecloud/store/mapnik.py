@@ -1,7 +1,7 @@
 import json
 import mapnik
 
-from tilecloud import Tile, TileStore
+from tilecloud import TileStore
 
 
 
@@ -23,7 +23,7 @@ class MapnikTileStore(TileStore):
     def get_one(self, tile):
         self.prepare_map(tile)
         image = mapnik.Image(self.map.width, self.map.height)
-        mapnik.render(self.mapnik, image)
+        mapnik.render(self.map, image)
         # fixme: content_type
         tile.data = image.tostring()
 
