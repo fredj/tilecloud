@@ -42,4 +42,4 @@ class UTFGridTileStore(MapnikTileStore):
         grid = mapnik.Grid(self.map.width, self.map.height)
         mapnik.render_layer(self.map, grid, layer=self.layer_idx, fields=self.fields)
         # fixme: content_type
-        tile.data = json.encode(grid.encode())
+        tile.data = json.dumps(grid.encode())
