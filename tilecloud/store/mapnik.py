@@ -27,7 +27,7 @@ class MapnikTileStore(TileStore):
         image = mapnik.Image(self.map.width, self.map.height)
         mapnik.render(self.map, image)
         # fixme: content_type
-        tile.data = image.tostring()
+        tile.data = image.tostring('png')
 
 
 class UTFGridTileStore(MapnikTileStore):
