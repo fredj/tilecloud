@@ -32,7 +32,7 @@ class MapnikTileStore(TileStore):
 
 class UTFGridTileStore(MapnikTileStore):
 
-    def __init__(self, mapfile, layer_idx=0, fields=None, **kwargs):
+    def __init__(self, mapfile, layer_idx=0, fields=[], **kwargs):
         MapnikTileStore.__init__(self, mapfile, **kwargs)
         self.layer_idx = layer_idx
         self.fields = fields
