@@ -346,6 +346,11 @@ class TileStore(object):
 
     @classmethod
     def load(cls, name):
+        if name.startswith('http://tiles.mapbox.com/'):
+            from urlparse import urlsplit
+            from tilecloud.store.tilejson import TileJSONTileStore
+            path = urlsplit(name).path.split('/')
+            return TileJSONTileStore.from_url('http://a.tiles.mapbox.com/v3/%s.%s.json' % (path[1], path[3]))
         if name.startswith('http://') or name.startswith('https://'):
             from tilecloud.layout.template import TemplateTileLayout
             from tilecloud.store.url import URLTileStore
