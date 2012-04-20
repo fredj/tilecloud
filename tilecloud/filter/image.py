@@ -102,3 +102,14 @@ class PILImageFilter(object):
                    **self.kwargs)
         tile.data = string_io.getvalue()
         return tile
+
+
+class DropTransparent(object):
+
+    def __call__(self, tile):
+        if tile is not None and tile.data is not None:
+            image = PIL.Image.open(StringIO(tile.data)).convert('RGBA')
+            colors = image.getcolors(1)  # returns None if the image has more than one color.
+            if colors is not None:
+                count, (r, g, b, a) = colors[0]
+                return tile if a > 0 else None
